@@ -31,14 +31,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mainPackage\main.py" />
+    <Compile Include="zip_fillerPackage\zip_filler.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zip_fillerPackage\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="functionPackage\" />
     <Folder Include="mainPackage\" />
     <Folder Include="dataFiles\" />
     <Folder Include="Data\" />
+    <Folder Include="zip_fillerPackage\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".env" />
     <Content Include="dataFiles\fuelPurchaseData.csv" />
     <Content Include="Data\cleanedData.CSV" />
   </ItemGroup>
