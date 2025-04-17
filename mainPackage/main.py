@@ -43,5 +43,12 @@ if __name__ == "__main__":
     # Remove Pepsi rows from main dataset
     df = csv.delete_rows(df, 'Fuel Type', 'Pepsi')
     
+
+    # Fill missing ZIP codes (first 5)
+    filler = ZipCodeFiller(api_key = api_key_zipcode)  #API Key
+    df = csv.fill_missing_zip_codes(df, filler)
+
+    # Export cleaned data
+    csv.export_to_csv(df, './Data/cleanedData.csv')
     
 

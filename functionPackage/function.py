@@ -86,6 +86,66 @@ class CSVDataProcessor:
 
 
 
+    def fill_missing_zip_codes(self, df, zip_filler):
+        """
+        Fill ZIP codes for the first 5 missing ZIP rows using both city and state.
+        @param df dataframe: The data to use
+        @param zip_filler Class: The class to connect API
+        @return DataFrame
+        """
+        missing_rows = df[~df['Full Address'].str.contains(r'\d{5}', na=False)].head(5) # Pick 5 missing ZIP rows and store them into list
+
+        for idx, row in missing_rows.iterrows():
+            full_address = row['Full Address']
+            parts = [p.strip() for p in full_address.split(',')]
+
+            if len(parts) >= 3:
+                city = parts[1]
+                state_abbr = parts[2].split()[0]  # e.g., "OH"
+            else:
+                print(f"[Skipped] Invalid address format: {full_address}")
+                continue
+
+            # Map state abbreviation to full state name
+            state_full = self._convert_state_abbr_to_full(state_abbr)
+
+            if not state_full:
+                print(f"[Skipped] Unknown state abbreviation: {state_abbr}")
+                continue
+
+            zip_code = zip_filler.get_zip_code(city, state_full)
+
+            if zip_code:
+                df.at[idx, 'Full Address'] = f"{full_address} {zip_code}"
+                print(f"[Updated] {full_address} ? {df.at[idx, 'Full Address']}")
+            else:
+                print(f"[Not Found] No ZIP found for {city}, {state_full}")
+       
+        return df
+
+    def _convert_state_abbr_to_full(self, abbr):
+        """
+        Convert abbreviation of state name to full state name
+        @param abbr String: The abbreviation of state name
+        @return String: Full state name correspond to the abbreviation
+        """
+        states = {
+                "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CA": "California",
+                "CO": "Colorado", "CT": "Connecticut", "DE": "Delaware", "FL": "Florida", "GA": "Georgia",
+                "HI": "Hawaii", "ID": "Idaho", "IL": "Illinois", "IN": "Indiana", "IA": "Iowa",
+                "KS": "Kansas", "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland",
+                "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota", "MS": "Mississippi", "MO": "Missouri",
+                "MT": "Montana", "NE": "Nebraska", "NV": "Nevada", "NH": "New Hampshire", "NJ": "New Jersey",
+                "NM": "New Mexico", "NY": "New York", "NC": "North Carolina", "ND": "North Dakota", "OH": "Ohio",
+                "OK": "Oklahoma", "OR": "Oregon", "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina",
+                "SD": "South Dakota", "TN": "Tennessee", "TX": "Texas", "UT": "Utah", "VT": "Vermont",
+                "VA": "Virginia", "WA": "Washington", "WV": "West Virginia", "WI": "Wisconsin", "WY": "Wyoming",
+                "DC": "District of Columbia"
+        }
+        return states.get(abbr.upper(), None)
+
+
+
 
 
        
