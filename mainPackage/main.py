@@ -13,15 +13,13 @@
 
 from functionPackage.function import *
 from zip_fillerPackage.zip_filler import*
-import os
-from dotenv import load_dotenv
+
 
 
 
 if __name__ == "__main__":
 
-    load_dotenv()  
-    api_key_zipcode = os.getenv("API_KEY_ZIPCODE")
+    api_key_zipcode = "05e648a0-1afd-11f0-a8c9-41b13795941d"    #API Key
 
     file_path = "./dataFiles/fuelPurchaseData.csv"
     # Read the CSV file
@@ -45,7 +43,7 @@ if __name__ == "__main__":
     
 
     # Fill missing ZIP codes (first 5)
-    filler = ZipCodeFiller(api_key = api_key_zipcode)  #API Key
+    filler = ZipCodeFiller(api_key = api_key_zipcode)  
     df = csv.fill_missing_zip_codes(df, filler)
 
     # Export cleaned data
