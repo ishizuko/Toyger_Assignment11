@@ -14,11 +14,12 @@
 
 import pandas as pd
 import requests
+import os
 
 class CSVDataProcessor:
 
     def __init__(self):
-        self.api_key = "05e648a0-1afd-11f0-a8c9-41b13795941d"  
+        self.api_key = os.environ.get('API_KEY_ASSIGNMENT11')
 
     
     def read_CSV_file(self, file_path):
