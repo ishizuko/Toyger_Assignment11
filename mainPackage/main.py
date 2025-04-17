@@ -7,7 +7,7 @@
 # Course #/Section:IS4010-001
 # Semester/Year:  Spring 2025
 # Brief Description of the assignment: We were given a CSV file and had to cleanup the file by doing some tasks
-# Brief Description of what this module does: 
+# Brief Description of what this module does: This module cleans fuel purchase data by formatting prices, removing duplicates/anomalies, filling ZIPs via API, and exporting results.
 # Citations: https://chatgpt.com/, https://www.geeksforgeeks.org/working-csv-files-python/
 # Anything else that's relevant:https://app.zipcodebase.com
 

@@ -9,7 +9,7 @@
 # Course #/Section:IS4010-001
 # Semester/Year:  Spring 2025
 # Brief Description of the assignment: We were given a CSV file and had to cleanup the file by doing some tasks
-# Brief Description of what this module does: 
+# Brief Description of what this module does: This module provides tools to clean and export CSV data, including price formatting, duplicate removal, anomaly extraction, and ZIP code filling via API.
 # Citations: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.round.html, https://chatgpt.com/
 # Anything else that's relevant:N/A
 

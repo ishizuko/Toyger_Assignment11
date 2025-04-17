@@ -1,0 +1,19 @@
+# File Name : extraCredit.txt
+# Student Name: Omar Alkhawaga,Kengo Ishizuka
+# email: alkhawoe@mail.uc.edu
+#        ishizuko@mail.uc.edu
+# Assignment Number: Assignment 11
+# Due Date: 4/17/2025
+# Course #/Section:IS4010-001
+# Semester/Year:  Spring 2025
+# Brief Description of the assignment: We were given a CSV file and had to cleanup the file by doing some tasks
+# Brief Description of what this module does: Document issue we found in the data.
+# Citations: N/A
+# Anything else that's relevant:N/A
+
+
+Extra Credit - Data Quality Issue: Inconsistent Full Address Format
+
+One of the issues in the dataset is that the "Full Address" column does not follow a consistent format.
+While many entries follow the standard structure (Street, City, State, ZIP), others begin with a ZIP code or are missing commas.
+These inconsistencies make it difficult to accurately extract structured address components such as city, state, and ZIP code.
