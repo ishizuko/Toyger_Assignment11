@@ -101,7 +101,7 @@ class CSVDataProcessor:
 
             if len(parts) >= 3:
                 city = parts[1]
-                state_abbr = parts[2].split()[0]  # e.g., "OH"
+                state_abbr = parts[2].split()[0]  # e.g., "OH" 
             else:
                 print(f"[Skipped] Invalid address format: {full_address}")
                 continue
